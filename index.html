@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>402 | Boutique Software Agency</title>
+    <meta name="description"
+          content="Boutique software agency specializing in taking startups from idea to $10M market cap.">
+
+    <!-- Tailwind CSS v4.1 -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        dark: '#222222',
+                        accent: '#982D00',
+                        secondary: '#106400',
+                        secondarydark: '#002712',
+                        third: '#091700',
+                        text: '#f8f8f8'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                    },
+                }
+            },
+            safelist: ['bg-linear-to-r']
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* Custom styles that can't be easily converted to Tailwind */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Add any custom Tailwind utilities */
+        @layer utilities {
+            /* Custom utilities can be added here */
+        }
+
+
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased bg-primary text-text bg-[radial-gradient(circle_at_25px_25px,rgba(255,255,255,0.03)_2px,transparent_0),radial-gradient(circle_at_75px_75px,rgba(255,255,255,0.03)_2px,transparent_0)] bg-[length:100px_100px]"
+      x-data="{
+    scrolled: false,
+    activeSection: 'hero',
+    checkScroll() {
+        this.scrolled = window.scrollY > 50;
+
+        // Determine active section
+        const sections = ['hero', 'global', 'services', 'about', 'contact'];
+        for (const section of sections) {
+            const el = document.getElementById(section);
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    this.activeSection = section;
+                    break;
+                }
+            }
+        }
+
+        // Reveal elements when scrolled into view
+        document.querySelectorAll('.reveal').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            if (rect.top <= windowHeight * 0.85) {
+                el.classList.add('active');
+            }
+        });
+    }
+}" x-init="checkScroll(); window.addEventListener('scroll', checkScroll)">
+<!-- Navigation -->
+<nav class="fixed w-full z-50 transition-all duration-300"
+     :class="scrolled ? 'bg-primary/90 backdrop-blur-md py-3 shadow-md' : 'py-6'">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wider">
+            <a href="#global" class="text-text/70 hover:text-accent transition-colors"
+               :class="activeSection === 'global' ? 'text-accent' : ''">Global</a>
+            <a href="#services" class="text-text/70 hover:text-accent transition-colors"
+               :class="activeSection === 'services' ? 'text-accent' : ''">Services</a>
+            <a href="#about" class="text-text/70 hover:text-accent transition-colors"
+               :class="activeSection === 'about' ? 'text-accent' : ''">About</a>
+            <a href="#contact" class="text-text/70 hover:text-accent transition-colors"
+               :class="activeSection === 'contact' ? 'text-accent' : ''">Contact</a>
+        </div>
+
+        <button class="md:hidden text-text">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero" class="min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/07squirrel%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/07squirrel%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <!--        <div class="absolute inset-0 left-[80%] right-0 bg-[url('assets/patterns/Gothic_Floral.jpg')] bg-cover bg-center"></div>-->
+    <div class="container mx-auto px-6 py-24 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+            <!-- Logo -->
+            <div class="mb-4 reveal">
+                <div class="relative inline-block">
+                    <div class="absolute inset-0 bg-accent/10 blur-xl rounded-full transform -translate-y-1 opacity-70"></div>
+                    <img
+                            src="assets/logo.png"
+                            alt="402 Software Agency Logo"
+                            class="w-48 md:w-64 mx-auto relative z-10 filter drop-shadow-lg transition-all duration-700 hover:scale-105 opacity-0 translate-y-4"
+                            x-init="setTimeout(() => $el.classList.add('opacity-100', 'translate-y-0'), 100)"
+                    />
+                </div>
+            </div>
+            <div class="mb-4 inline-block px-3 py-1 border border-accent/30 text-accent text-xs uppercase tracking-widest reveal">
+                Boutique Software Agency
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight reveal">
+                Any idea to a multi <span class="text-secondary">$million</span> market cap business
+            </h1>
+            <p class="text-xl md:text-2xl text-text/80 mb-8 reveal">
+                There is a shortcut to success. It's working with us.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 reveal">
+                <div class="px-4 py-2 bg-accent text-primary/70 text-sm rounded-sm">
+                    Fully booked for the next 8-12 months
+                </div>
+                <a href="#contact"
+                   class="px-6 py-3 border border-text/20 text-text font-medium hover:bg-accent/90 transition-colors">
+                    Schedule a meeting
+                </a>
+            </div>
+            <p class="mt-8 text-text/60 text-sm reveal">
+                Fifteen years of mastery in the software industry.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- About/Mission Section -->
+<section id="about" class="py-24 relative">
+    <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/04raccoon%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/04raccoon%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <!--        <div class="absolute inset-0  left-[80%] right-0 bg-[url('assets/patterns/Faded_Wallpaper.jpg')] bg-cover bg-center"></div>-->
+    <div class="container mx-auto px-6 relative z-[2]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center reveal">
+                Our <span class="text-accent">Mission</span>
+            </h2>
+
+            <div class="w-full reveal text-4xl font-thin uppercase tracking-widest">
+                <p class=" leading-relaxed text-text/80 mb-6 py-20">
+                    To <span class="text-secondary font-medium">get rich</span> by building lasting
+                    mutually profitable <span class="">partnerships</span>.
+                </p>
+                <p class="text-2xl text-center text-text/80">
+                    What's yours?
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-24 relative">
+    <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/08goat%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/08goat%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <!--        <div class="absolute inset-0  left-[80%] right-0 bg-[url('assets/patterns/Dark_Blossom_Flowers.jpg')] bg-cover bg-center"></div>-->
+    <div class="container mx-auto px-6 relative z-[2]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center reveal">
+                Our <span class="text-accent">Approach</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="reveal">
+                    <div class="border border-text/10 p-8 h-full">
+                        <h3 class="text-xl font-bold mb-4">Complex Custom Applications</h3>
+                        <p class="text-text/70 mb-4">
+                            We specialize in building sophisticated, custom software solutions
+                            that solve complex business challenges and create competitive advantages.
+                        </p>
+                        <p class="text-accent font-medium">
+                            "We don't do conveyor belt projects"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="border border-text/10 p-8 h-full">
+                        <h3 class="text-xl font-bold mb-4">MVP to Scale</h3>
+                        <p class="text-text/70 mb-4">
+                            Start with a single full-stack developer to build your MVP,
+                            then seamlessly scale to a complete team as your business grows.
+                        </p>
+                        <p class="text-accent font-medium">
+                            "Results, not theatrics"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <div class="border border-text/10 p-8 h-full">
+                        <h3 class="text-xl font-bold mb-4">Global Talent Sourcing</h3>
+                        <p class="text-text/70 mb-4">
+                            Access to exceptional developers, designers, and product specialists
+                            from around the world, carefully vetted and managed.
+                        </p>
+                        <p class="text-secondary font-medium">
+                            "Global talent, local expertise"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="border border-text/10 p-8 h-full">
+                        <h3 class="text-xl font-bold mb-4">Full-Service Business Support</h3>
+                        <p class="text-text/70 mb-4">
+                            Beyond software development, we connect you with specialists in
+                            any critical and casual business functions.
+                        </p>
+                        <p class="text-secondary font-medium">
+                            "We have a guy that knows a guy"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact/Footer Section -->
+<section id="contact" class="py-24 relative">
+    <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/05bison%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
+        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/05bison%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+    </div>
+    <!--        <div class="absolute inset-0  left-[80%] right-0 bg-[url('assets/patterns/Gothic_Floral_wallpaper.jpg')] bg-cover bg-center"></div>-->
+    <div class="container mx-auto px-6 relative z-[2]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center reveal">
+                Let's <span class="text-accent">Connect</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <p class="text-xl leading-relaxed text-text/80 mb-6">
+                        We're currently fully booked, but we'd love to connect with you to discuss future opportunities.
+                    </p>
+                    <p class="text-text/70 mb-8">
+                        The best way to reach out is via email. Happy to discuss your project and provide insights based
+                        on our 15 years of experience completely free for founders.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-accent mr-3">→</span>
+                            <span class="text-text/70">donald@402.agency</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-accent mr-3">→</span>
+                            <span class="text-text/70">Donald Ovcharov</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="border border-text/10 p-8 text-center">
+                        <h3 class="text-xl font-bold mb-6">Connect with us on LinkedIn</h3>
+                        <p class="text-text/70 mb-8">
+                            Follow us on LinkedIn, we share insightful industry reports and articles aimed at helping
+                            digital founders succeed.
+                        </p>
+                        <a href="https://linkedin.com/company/402-agency/"
+                           class="inline-flex items-center px-6 py-3 bg-accent text-primary font-medium hover:bg-accent/90 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            Connect
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 border-t border-text/10 relative">
+    <div class="container mx-auto px-6 relative z-[2]">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="text-text/50 text-sm">
+                &copy; 2025 CODE-402. All rights reserved.
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
