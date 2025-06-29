@@ -54,11 +54,76 @@
             transform: translateY(0);
         }
 
-        /* Add any custom Tailwind utilities */
-        @layer utilities {
-            /* Custom utilities can be added here */
+        /* RGB Split Effect for Animal Heads */
+        .animal-head {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            overflow: hidden;
         }
 
+        .animal-head-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: screen;
+            animation: rgb-drift 12s ease-in-out infinite alternate;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            opacity: 0.85; /* Slightly reduce opacity for more eerie effect */
+        }
+
+        .animal-head-layer-red {
+            background: linear-gradient(to left, #000000, #3a0000);
+            animation-delay: 0s;
+        }
+
+        .animal-head-layer-green {
+            background: linear-gradient(to left, #000000, #003a00);
+            animation-delay: 2s;
+        }
+
+        .animal-head-layer-blue {
+            background: linear-gradient(to left, #000000, #00003a);
+            animation-delay: 4s;
+        }
+
+        .animal-head-right .animal-head-layer-red {
+            background: linear-gradient(to right, #000000, #3a0000);
+        }
+
+        .animal-head-right .animal-head-layer-green {
+            background: linear-gradient(to right, #000000, #003a00);
+        }
+
+        .animal-head-right .animal-head-layer-blue {
+            background: linear-gradient(to right, #000000, #00003a);
+        }
+
+        @keyframes rgb-drift {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            20% {
+                transform: translate(-8px, 4px) scale(1.01);
+            }
+            40% {
+                transform: translate(5px, -3px) scale(0.99);
+            }
+            60% {
+                transform: translate(-5px, -7px) scale(1.02);
+            }
+            80% {
+                transform: translate(7px, 6px) scale(0.98);
+            }
+            100% {
+                transform: translate(-4px, 8px) scale(1.01);
+            }
+        }
+        /* End RGB Split Effect for Animal Heads */
 
     </style>
 </head>
@@ -119,10 +184,18 @@
 <!-- Hero Section -->
 <section id="hero" class="min-h-screen flex items-center relative overflow-hidden">
     <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/07squirrel%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/07squirrel lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/07squirrel lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/07squirrel lineart.svg');"></div>
+        </div>
     </div>
     <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/07squirrel%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head animal-head-right">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/07squirrel lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/07squirrel lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/07squirrel lineart.svg');"></div>
+        </div>
     </div>
     <!--        <div class="absolute inset-0 left-[80%] right-0 bg-[url('assets/patterns/Gothic_Floral.jpg')] bg-cover bg-center"></div>-->
     <div class="container mx-auto px-6 py-24 relative z-10">
@@ -167,10 +240,18 @@
 <!-- About/Mission Section -->
 <section id="about" class="py-24 relative">
     <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/04raccoon%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/04raccoon lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/04raccoon lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/04raccoon lineart.svg');"></div>
+        </div>
     </div>
     <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/04raccoon%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head animal-head-right">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/04raccoon lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/04raccoon lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/04raccoon lineart.svg');"></div>
+        </div>
     </div>
     <!--        <div class="absolute inset-0  left-[80%] right-0 bg-[url('assets/patterns/Faded_Wallpaper.jpg')] bg-cover bg-center"></div>-->
     <div class="container mx-auto px-6 relative z-[2]">
@@ -195,10 +276,18 @@
 <!-- Services Section -->
 <section id="services" class="py-24 relative">
     <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/08goat%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/08goat lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/08goat lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/08goat lineart.svg');"></div>
+        </div>
     </div>
     <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/08goat%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head animal-head-right">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/08goat lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/08goat lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/08goat lineart.svg');"></div>
+        </div>
     </div>
     <!--        <div class="absolute inset-0  left-[80%] right-0 bg-[url('assets/patterns/Dark_Blossom_Flowers.jpg')] bg-cover bg-center"></div>-->
     <div class="container mx-auto px-6 relative z-[2]">
@@ -269,10 +358,18 @@
 <!-- Contact/Footer Section -->
 <section id="contact" class="py-24 relative">
     <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-l from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/05bison%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/05bison lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/05bison lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/05bison lineart.svg');"></div>
+        </div>
     </div>
     <div class="absolute top-1/2 transform -translate-y-1/2 right-0 flex items-center justify-center">
-        <div class="w-[380px] h-[380px] bg-gradient-to-r from-black to-secondarydark [mask-image:url('assets/animal-heads/SVG/05bison%20lineart.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]"></div>
+        <div class="animal-head animal-head-right">
+            <div class="animal-head-layer animal-head-layer-red" style="mask-image: url('assets/animal-heads/SVG/05bison lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-green" style="mask-image: url('assets/animal-heads/SVG/05bison lineart.svg');"></div>
+            <div class="animal-head-layer animal-head-layer-blue" style="mask-image: url('assets/animal-heads/SVG/05bison lineart.svg');"></div>
+        </div>
     </div>
     <!--        <div class="absolute inset-0  left-[80%] right-0 bg-[url('assets/patterns/Gothic_Floral_wallpaper.jpg')] bg-cover bg-center"></div>-->
     <div class="container mx-auto px-6 relative z-[2]">
